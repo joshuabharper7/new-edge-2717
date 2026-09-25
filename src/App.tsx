@@ -6,6 +6,7 @@ import { DiscipleshipPathway } from './components/DiscipleshipPathway';
 import { GospelCallout } from './components/GospelCallout';
 import { StatementOfFaith } from './components/StatementOfFaith';
 import { MentorshipQuiz } from './components/MentorshipQuiz';
+import { DonateSection } from './components/DonateSection';
 import { BudgetOverview } from './components/BudgetOverview';
 import { FAQSection } from './components/FAQSection';
 import { Footer } from './components/Footer';
@@ -19,6 +20,8 @@ export function App() {
   const [modalTrack, setModalTrack] = useState<TrackId>('mens');
 
   const [donateModalOpen, setDonateModalOpen] = useState(false);
+  const [donateAmount, setDonateAmount] = useState<number>(50);
+  const [donateFrequency, setDonateFrequency] = useState<'monthly' | 'one_time'>('monthly');
 
   const handleOpenModal = (tab: ModalTab = 'mentee', trackId: TrackId = 'mens') => {
     setModalTab(tab);
@@ -26,19 +29,21 @@ export function App() {
     setModalOpen(true);
   };
 
-  const handleOpenDonate = () => {
+  const handleOpenDonate = (amount = 50, frequency: 'monthly' | 'one_time' = 'monthly') => {
+    setDonateAmount(amount);
+    setDonateFrequency(frequency);
     setDonateModalOpen(true);
   };
 
   return (
     <div className="min-h-screen bg-[#11161B] text-[#FDFBF7] selection:bg-[#B66D44] selection:text-[#FDFBF7]">
       {/* Navigation */}
-      <Navbar onOpenModal={handleOpenModal} onOpenDonate={handleOpenDonate} />
+      <Navbar onOpenModal={handleOpenModal} onOpenDonate={() => handleOpenDonate(50, 'monthly')} />
 
       {/* Main Content */}
       <main>
         {/* Hero Section */}
-        <Hero onOpenModal={handleOpenModal} onOpenDonate={handleOpenDonate} />
+        <Hero onOpenModal={handleOpenModal} onOpenDonate={() => handleOpenDonate(50, 'monthly')} />
 
         {/* Ministry Tracks Grid (3 Cards) */}
         <TracksGrid onOpenModal={handleOpenModal} />
@@ -55,15 +60,18 @@ export function App() {
         {/* Interactive Readiness Assessment Quiz */}
         <MentorshipQuiz onOpenModal={handleOpenModal} />
 
+        {/* Dedicated Giving / Financial Partnership Section */}
+        <DonateSection onOpenDonate={handleOpenDonate} />
+
         {/* Governance & Stewardship Transparency */}
-        <BudgetOverview onOpenDonate={handleOpenDonate} />
+        <BudgetOverview onOpenDonate={() => handleOpenDonate(50, 'monthly')} />
 
         {/* FAQ Section */}
         <FAQSection />
       </main>
 
       {/* Footer */}
-      <Footer onOpenModal={handleOpenModal} onOpenDonate={handleOpenDonate} />
+      <Footer onOpenModal={handleOpenModal} onOpenDonate={() => handleOpenDonate(50, 'monthly')} />
 
       {/* Dual-Tab Intake Modal */}
       <IntakeModal
@@ -77,6 +85,8 @@ export function App() {
       <DonateModal
         isOpen={donateModalOpen}
         onClose={() => setDonateModalOpen(false)}
+        initialAmount={donateAmount}
+        initialFrequency={donateFrequency}
       />
     </div>
   );

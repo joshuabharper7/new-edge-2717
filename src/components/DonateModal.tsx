@@ -5,12 +5,19 @@ import type { DonateFormData } from '../types';
 interface DonateModalProps {
   isOpen: boolean;
   onClose: () => void;
+  initialAmount?: number;
+  initialFrequency?: 'monthly' | 'one_time';
 }
 
-export const DonateModal: React.FC<DonateModalProps> = ({ isOpen, onClose }) => {
+export const DonateModal: React.FC<DonateModalProps> = ({
+  isOpen,
+  onClose,
+  initialAmount = 50,
+  initialFrequency = 'monthly'
+}) => {
   const [formData, setFormData] = useState<DonateFormData>({
-    frequency: 'monthly',
-    amount: 50,
+    frequency: initialFrequency,
+    amount: initialAmount,
     customAmount: '',
     name: '',
     email: '',
@@ -24,7 +31,12 @@ export const DonateModal: React.FC<DonateModalProps> = ({ isOpen, onClose }) => 
   useEffect(() => {
     setIsSubmitted(false);
     setErrors({});
-  }, [isOpen]);
+    setFormData((prev) => ({
+      ...prev,
+      amount: initialAmount,
+      frequency: initialFrequency
+    }));
+  }, [isOpen, initialAmount, initialFrequency]);
 
   if (!isOpen) return null;
 
