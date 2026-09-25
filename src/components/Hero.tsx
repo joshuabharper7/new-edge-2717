@@ -12,7 +12,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenModal }) => {
       {/* Background Hero Image with Atmospheric Dark Overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/hero.jpg"
+          src="./images/hero.jpg"
           alt="Iron sharpens iron background"
           className="w-full h-full object-cover object-center opacity-30 scale-105 filter blur-[1px]"
         />

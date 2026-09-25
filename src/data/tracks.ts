@@ -15,7 +15,7 @@ export const TRACKS: Track[] = [
       "Structured core curriculum focused on biblical manhood",
       "Quarterly brotherhood fellowship events in Reno"
     ],
-    image: "/images/mens-track.jpg",
+    image: "./images/mens-track.jpg",
     iconName: "Shield",
     badge: "1-on-1 Pairing"
   },
@@ -33,7 +33,7 @@ export const TRACKS: Track[] = [
       "Safe, confidential space for spiritual growth & prayer",
       "Seasonal women's gatherings & fellowship"
     ],
-    image: "/images/womens-track.jpg",
+    image: "./images/womens-track.jpg",
     iconName: "HeartHandshake",
     badge: "Relational Pairing"
   },
@@ -51,7 +51,7 @@ export const TRACKS: Track[] = [
       "Personal career, identity & calling mentorship",
       "Annual off-site retreats and community outreach"
     ],
-    image: "/images/young-adult-track.jpg",
+    image: "./images/young-adult-track.jpg",
     iconName: "Compass",
     badge: "18+ Community"
   }
