@@ -40,28 +40,53 @@ export const DonateModal: React.FC<DonateModalProps> = ({
 
   if (!isOpen) return null;
 
-  const givingTiers = [
+  const monthlyTiers = [
     {
       amount: 30,
       label: '$30 / mo',
-      impact: 'Covers background screening & training for 1 new mentor cohort candidate.'
+      impact: 'Covers background screening & training for 1 new mentor.'
     },
     {
       amount: 50,
       label: '$50 / mo',
-      impact: 'Funds study curriculum & biblical discipleship guides for 1 mentor-mentee pair.'
+      impact: 'Funds study curriculum & guides for 1 mentor-mentee pair.'
     },
     {
       amount: 100,
       label: '$100 / mo',
-      impact: 'Supports Young Adult Discipleship weekly venue space, food & teaching series.'
+      impact: 'Supports Young Adult Discipleship weekly venue space & food.'
     },
     {
       amount: 250,
       label: '$250 / mo',
-      impact: 'Sponsors quarterly brotherhood & women’s fellowship gatherings across Reno.'
+      impact: 'Sponsors quarterly brotherhood & women’s fellowship events.'
     }
   ];
+
+  const oneTimeTiers = [
+    {
+      amount: 50,
+      label: '$50',
+      impact: 'Purchases core study materials for a mentor-mentee pair.'
+    },
+    {
+      amount: 150,
+      label: '$150',
+      impact: 'Fully sponsors background screening & training for 1 mentor.'
+    },
+    {
+      amount: 300,
+      label: '$300',
+      impact: 'Sponsors 2 young adults for the annual off-site retreat.'
+    },
+    {
+      amount: 500,
+      label: '$500',
+      impact: 'Underwrites a community-wide iron-sharpening workshop.'
+    }
+  ];
+
+  const activeGivingTiers = formData.frequency === 'monthly' ? monthlyTiers : oneTimeTiers;
 
   const getEffectiveAmount = (): number => {
     if (formData.amount === 0) {
@@ -218,7 +243,7 @@ export const DonateModal: React.FC<DonateModalProps> = ({
                   Select Giving Tier {formData.frequency === 'monthly' && '(Monthly)'} <span className="text-[#B66D44]">*</span>
                 </label>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-                  {givingTiers.map((tier) => (
+                  {activeGivingTiers.map((tier) => (
                     <button
                       key={tier.amount}
                       type="button"
