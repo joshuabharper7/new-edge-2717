@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-dark: #11161B;
+    --card-dark: #1A2229;
+    --slate-accent: #222B32;
+    --copper-primary: #B66D44;
+    --copper-hover: #9E5933;
+    --copper-tint: #F8EDE6;
+    --text-cream: #FDFBF7;
+    --text-muted: #94A3B8;
+  }
+
+  body {
+    background-color: #11161B;
+    color: #FDFBF7;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+}
+
+/* Custom Utilities & Glow Effects */
+.bg-brand-dark { background-color: #11161B; }
+.bg-brand-card { background-color: #1A2229; }
+.bg-brand-slate { background-color: #222B32; }
+
+.text-copper { color: #B66D44; }
+.text-copper-hover { color: #9E5933; }
+.text-copper-tint { color: #F8EDE6; }
+.text-cream { color: #FDFBF7; }
+.text-slate-muted { color: #94A3B8; }
+
+.bg-copper { background-color: #B66D44; }
+.bg-copper-hover:hover { background-color: #9E5933; }
+.bg-copper-tint { background-color: rgba(182, 109, 68, 0.12); }
+
+.border-copper { border-color: #B66D44; }
+.border-copper-subtle { border-color: rgba(182, 109, 68, 0.25); }
+.border-slate-subtle { border-color: rgba(255, 255, 255, 0.08); }
+
+/* Glow & Gradient effects */
+.glow-copper {
+  box-shadow: 0 0 25px rgba(182, 109, 68, 0.25);
+}
+
+.glow-copper-lg {
+  box-shadow: 0 0 45px rgba(182, 109, 68, 0.35);
+}
+
+.gradient-copper-slate {
+  background: linear-gradient(135deg, rgba(182, 109, 68, 0.15) 0%, rgba(26, 34, 41, 0.8) 100%);
+}
+
+.gradient-copper-text {
+  background: linear-gradient(135deg, #FDFBF7 40%, #B66D44 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glass-panel {
+  background: rgba(26, 34, 41, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(182, 109, 68, 0.2);
+}
+
+/* Animations */
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s infinite ease-in-out;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #11161B;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #222B32;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #B66D44;
+}
