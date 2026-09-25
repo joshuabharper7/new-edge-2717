@@ -144,9 +144,6 @@ export const DonateModal: React.FC<DonateModalProps> = ({
             <div>
               <div className="flex items-center gap-2">
                 <h3 className="text-xl font-bold text-[#FDFBF7]">Support the Mission</h3>
-                <span className="px-2 py-0.5 rounded-full bg-[#B66D44]/20 text-[10px] font-bold text-[#B66D44] border border-[#B66D44]/30">
-                  Demo Mode
-                </span>
               </div>
               <p className="text-xs text-[#94A3B8]">New Edge 27:17 Ministries • Washoe County, NV</p>
             </div>
@@ -317,10 +314,10 @@ export const DonateModal: React.FC<DonateModalProps> = ({
                 </div>
               </div>
 
-              {/* Payment Method Switcher (Demo) */}
+              {/* Payment Method Switcher */}
               <div>
                 <label className="block text-xs font-bold text-[#FDFBF7] uppercase tracking-wider mb-1.5">
-                  Payment Preference (Demo Mode)
+                  Payment Preference
                 </label>
                 <div className="grid grid-cols-3 gap-2">
                   {[
@@ -358,12 +355,12 @@ export const DonateModal: React.FC<DonateModalProps> = ({
                   className="w-full py-3.5 rounded-xl text-base font-bold text-[#FDFBF7] bg-[#B66D44] hover:bg-[#9E5933] transition-all flex items-center justify-center gap-2 shadow-lg shadow-[#B66D44]/30 disabled:opacity-50"
                 >
                   {isSubmitting ? (
-                    <span>Processing Demo Contribution...</span>
+                    <span>Processing Contribution...</span>
                   ) : (
                     <>
                       <CreditCard className="w-4 h-4" />
                       <span>
-                        Process Demo Gift of ${getEffectiveAmount()}{' '}
+                        Send Gift of ${getEffectiveAmount()}{' '}
                         {formData.frequency === 'monthly' ? '/ month' : ''}
                       </span>
                     </>
