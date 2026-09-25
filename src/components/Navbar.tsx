@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ChevronRight, UserCheck } from 'lucide-react';
+import { Menu, X, ChevronRight, UserCheck, Heart } from 'lucide-react';
 import { Logo } from './Logo';
 import type { ModalTab } from '../types';
 
 interface NavbarProps {
   onOpenModal: (tab?: ModalTab) => void;
+  onOpenDonate: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenModal }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onOpenModal, onOpenDonate }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -67,11 +68,19 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenModal }) => {
             ))}
           </nav>
 
-          {/* Desktop CTA Button */}
+          {/* Desktop CTA Buttons */}
           <div className="hidden md:flex items-center gap-3">
             <button
+              onClick={onOpenDonate}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold text-[#F8EDE6] bg-[#1A2229] hover:bg-[#222B32] border border-[#B66D44]/40 hover:border-[#B66D44] transition-all duration-200"
+            >
+              <Heart className="w-3.5 h-3.5 text-[#B66D44] fill-current" />
+              <span>Give</span>
+            </button>
+
+            <button
               onClick={() => onOpenModal('mentee')}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold text-[#FDFBF7] bg-[#B66D44] hover:bg-[#9E5933] transition-all duration-200 shadow-md shadow-[#B66D44]/20 hover:shadow-[#B66D44]/40 active:scale-95"
+              className="inline-flex items-center gap-2 px-5 py-2 rounded-lg text-xs font-bold text-[#FDFBF7] bg-[#B66D44] hover:bg-[#9E5933] transition-all duration-200 shadow-md shadow-[#B66D44]/20 hover:shadow-[#B66D44]/40 active:scale-95"
             >
               <UserCheck className="w-4 h-4" />
               <span>Get Connected</span>
@@ -117,14 +126,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenModal }) => {
                 <UserCheck className="w-4 h-4" />
                 <span>Find a Mentor</span>
               </button>
+
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
-                  onOpenModal('mentor');
+                  onOpenDonate();
                 }}
                 className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-sm font-semibold text-[#FDFBF7] bg-[#222B32] hover:bg-[#2A3642] border border-[#B66D44]/40 transition-colors"
               >
-                <span>Serve as a Mentor</span>
+                <Heart className="w-4 h-4 text-[#B66D44] fill-current" />
+                <span>Donate / Partner</span>
               </button>
             </div>
           </div>

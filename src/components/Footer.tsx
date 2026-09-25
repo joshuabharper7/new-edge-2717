@@ -1,12 +1,13 @@
-import { MapPin, Mail, Phone, ArrowUp } from 'lucide-react';
+import { MapPin, Mail, Phone, ArrowUp, Heart } from 'lucide-react';
 import { Logo } from './Logo';
 import type { ModalTab } from '../types';
 
 interface FooterProps {
   onOpenModal: (tab: ModalTab) => void;
+  onOpenDonate: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onOpenModal }) => {
+export const Footer: React.FC<FooterProps> = ({ onOpenModal, onOpenDonate }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -87,10 +88,11 @@ export const Footer: React.FC<FooterProps> = ({ onOpenModal }) => {
                 Find a Mentor
               </button>
               <button
-                onClick={() => onOpenModal('mentor')}
-                className="px-4 py-2.5 rounded-lg text-xs font-bold text-[#FDFBF7] bg-[#1A2229] hover:bg-[#222B32] border border-[#B66D44]/40 transition-colors text-center"
+                onClick={onOpenDonate}
+                className="px-4 py-2.5 rounded-lg text-xs font-bold text-[#F8EDE6] bg-[#1A2229] hover:bg-[#222B32] border border-[#B66D44]/40 transition-colors flex items-center justify-center gap-1.5"
               >
-                Serve as a Mentor
+                <Heart className="w-3.5 h-3.5 text-[#B66D44] fill-current" />
+                <span>Donate</span>
               </button>
             </div>
           </div>

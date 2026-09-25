@@ -50,3 +50,14 @@ export interface FAQItem {
   answer: string;
   category: 'general' | 'mentees' | 'mentors';
 }
+
+export type DonateFrequency = 'one_time' | 'monthly';
+
+export interface DonateFormData {
+  frequency: DonateFrequency;
+  amount: number;
+  customAmount?: string;
+  name: string;
+  email: string;
+  paymentMethod: 'card' | 'paypal' | 'check';
+}

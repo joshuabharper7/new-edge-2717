@@ -10,6 +10,7 @@ import { BudgetOverview } from './components/BudgetOverview';
 import { FAQSection } from './components/FAQSection';
 import { Footer } from './components/Footer';
 import { IntakeModal } from './components/IntakeModal';
+import { DonateModal } from './components/DonateModal';
 import type { ModalTab, TrackId } from './types';
 
 export function App() {
@@ -17,21 +18,27 @@ export function App() {
   const [modalTab, setModalTab] = useState<ModalTab>('mentee');
   const [modalTrack, setModalTrack] = useState<TrackId>('mens');
 
+  const [donateModalOpen, setDonateModalOpen] = useState(false);
+
   const handleOpenModal = (tab: ModalTab = 'mentee', trackId: TrackId = 'mens') => {
     setModalTab(tab);
     setModalTrack(trackId);
     setModalOpen(true);
   };
 
+  const handleOpenDonate = () => {
+    setDonateModalOpen(true);
+  };
+
   return (
     <div className="min-h-screen bg-[#11161B] text-[#FDFBF7] selection:bg-[#B66D44] selection:text-[#FDFBF7]">
       {/* Navigation */}
-      <Navbar onOpenModal={handleOpenModal} />
+      <Navbar onOpenModal={handleOpenModal} onOpenDonate={handleOpenDonate} />
 
       {/* Main Content */}
       <main>
         {/* Hero Section */}
-        <Hero onOpenModal={handleOpenModal} />
+        <Hero onOpenModal={handleOpenModal} onOpenDonate={handleOpenDonate} />
 
         {/* Ministry Tracks Grid (3 Cards) */}
         <TracksGrid onOpenModal={handleOpenModal} />
@@ -49,14 +56,14 @@ export function App() {
         <MentorshipQuiz onOpenModal={handleOpenModal} />
 
         {/* Governance & Stewardship Transparency */}
-        <BudgetOverview />
+        <BudgetOverview onOpenDonate={handleOpenDonate} />
 
         {/* FAQ Section */}
         <FAQSection />
       </main>
 
       {/* Footer */}
-      <Footer onOpenModal={handleOpenModal} />
+      <Footer onOpenModal={handleOpenModal} onOpenDonate={handleOpenDonate} />
 
       {/* Dual-Tab Intake Modal */}
       <IntakeModal
@@ -64,6 +71,12 @@ export function App() {
         onClose={() => setModalOpen(false)}
         defaultTab={modalTab}
         defaultTrack={modalTrack}
+      />
+
+      {/* Donate Modal (Demo Mode) */}
+      <DonateModal
+        isOpen={donateModalOpen}
+        onClose={() => setDonateModalOpen(false)}
       />
     </div>
   );

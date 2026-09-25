@@ -1,12 +1,13 @@
 import React from 'react';
-import { ArrowRight, Users, Shield, MapPin, Sparkles } from 'lucide-react';
+import { ArrowRight, Users, Shield, MapPin, Sparkles, Heart } from 'lucide-react';
 import type { ModalTab } from '../types';
 
 interface HeroProps {
   onOpenModal: (tab: ModalTab) => void;
+  onOpenDonate: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onOpenModal }) => {
+export const Hero: React.FC<HeroProps> = ({ onOpenModal, onOpenDonate }) => {
   return (
     <section className="relative min-h-[92vh] flex items-center justify-center pt-28 pb-20 overflow-hidden bg-[#11161B]">
       {/* Background Hero Image with Atmospheric Dark Overlay */}
@@ -53,7 +54,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenModal }) => {
           Christ-centered mentorship walking alongside individuals as they grow in faith, character, and calling through intentional 1-on-1 and group discipleship.
         </p>
 
-        {/* Dual CTAs */}
+        {/* Dual CTAs + Give Action */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-16">
           {/* Primary CTA: Find a Mentor */}
           <button
@@ -71,6 +72,15 @@ export const Hero: React.FC<HeroProps> = ({ onOpenModal }) => {
           >
             <Shield className="w-5 h-5 text-[#B66D44]" />
             <span>Serve as a Mentor</span>
+          </button>
+
+          {/* Tertiary CTA: Donate */}
+          <button
+            onClick={onOpenDonate}
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl text-base font-bold text-[#F8EDE6] bg-[#222B32] hover:bg-[#2A3642] border border-slate-700 hover:border-[#B66D44]/60 transition-all duration-300 shadow-md hover:-translate-y-0.5"
+          >
+            <Heart className="w-5 h-5 text-[#B66D44] fill-current" />
+            <span>Support Ministry</span>
           </button>
         </div>
 

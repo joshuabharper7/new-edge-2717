@@ -1,7 +1,11 @@
 import React from 'react';
-import { ShieldCheck, FileText, Heart, Building2, CheckCircle2 } from 'lucide-react';
+import { ShieldCheck, FileText, Heart, Building2, CheckCircle2, ArrowRight } from 'lucide-react';
 
-export const BudgetOverview: React.FC = () => {
+interface BudgetOverviewProps {
+  onOpenDonate?: () => void;
+}
+
+export const BudgetOverview: React.FC<BudgetOverviewProps> = ({ onOpenDonate }) => {
   const pillars = [
     {
       icon: <Building2 className="w-5 h-5 text-[#B66D44]" />,
@@ -28,8 +32,8 @@ export const BudgetOverview: React.FC = () => {
   return (
     <section className="py-20 bg-[#1A2229] border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-[#11161B] rounded-3xl border border-[#B66D44]/30 p-8 sm:p-12 shadow-2xl">
-          <div className="text-center max-w-3xl mx-auto mb-12">
+        <div className="bg-[#11161B] rounded-3xl border border-[#B66D44]/30 p-8 sm:p-12 shadow-2xl space-y-12">
+          <div className="text-center max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#1A2229] border border-[#B66D44]/30 text-xs font-semibold text-[#B66D44] tracking-widest uppercase mb-3">
               Stewardship & Governance
             </div>
@@ -62,6 +66,27 @@ export const BudgetOverview: React.FC = () => {
               </div>
             ))}
           </div>
+
+          {/* Direct Partner Callout */}
+          {onOpenDonate && (
+            <div className="pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+              <div>
+                <h4 className="text-lg font-bold text-[#FDFBF7]">Partner With Us Financially</h4>
+                <p className="text-xs text-[#94A3B8] mt-0.5">
+                  Help cover mentor training, study curriculum, and young adult community gatherings.
+                </p>
+              </div>
+
+              <button
+                onClick={onOpenDonate}
+                className="px-6 py-3 rounded-xl text-xs font-bold text-[#FDFBF7] bg-[#B66D44] hover:bg-[#9E5933] transition-colors flex items-center gap-2 shadow-md shadow-[#B66D44]/20 shrink-0"
+              >
+                <Heart className="w-4 h-4 fill-current" />
+                <span>Support the Ministry</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </section>
